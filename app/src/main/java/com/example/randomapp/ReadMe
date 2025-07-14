@@ -1,0 +1,101 @@
+🧠 Descripción General
+
+"RandomApp" es una aplicación Android construida desde cero con Jetpack Compose, siguiendo una
+arquitectura moderna basada en el patrón MVVM (Model-View-ViewModel).
+Está diseñada como práctica evaluable de programación móvil, con la finalidad de demostrar
+conocimientos de:
+
+ --> Inyección de dependencias con Hilt (sin KAPT, usando KSP).
+
+ --> Comunicación con API REST mediante Retrofit.
+
+ --> Navegación entre pantallas usando NavHost y Scaffold.
+
+ --> Diseño UI declarativo con Material 3 y Jetpack Compose.
+
+ --> Gestión de estado con ViewModel y mutableStateOf.
+
+🏗️ Estructura del Proyecto
+
+com.example.randomapp/
+├── di/               → Módulos Hilt para Retrofit y Repository
+├── model/            → Data class Post
+├── network/          → Interfaz PostApiService (Retrofit)
+├── repository/       → Lógica de negocio: PostRepository
+├── ui/
+│   ├── screens/      → PostListScreen, PostDetailScreen
+│   └── navigation/   → AppNavGraph y rutas
+├── viewmodel/        → PostViewModel, PostDetailViewModel
+├── RandomApp.kt      → Clase @HiltAndroidApp
+└── MainActivity.kt   → Scaffold + NavHost
+
+🧪 Funcionalidades Implementadas
+
+🏠 Pantalla principal	Carga y muestra lista de posts desde API. Incluye formulario para añadir
+nuevos posts (POST).
+
+📄 Pantalla de detalle	Navega al detalle del post seleccionado. Obtiene los datos desde API
+(GET /posts/{id}).
+
+✅ Formulario activo	Inserta nuevos posts simulados con userId = 1. Se añade dinámicamente a la
+lista.
+
+🧠 Persistencia temporal	Si un post fue insertado, se muestra desde memoria local para evitar
+errores 404.
+
+🔧 Dependencias principales
+
+ --> Jetpack Compose: UI declarativa moderna.
+
+ --> Material3: Componentes visuales de última generación.
+
+ --> Retrofit + Gson: Comunicación con API REST.
+
+ --> Hilt + KSP: Inyección de dependencias moderna.
+
+ --> Navigation Compose: Manejo de rutas entre pantallas.
+
+ --> ViewModel + State: Gestión de estado y ciclo de vida.
+
+🚀 Cómo usar la app
+
+    La app inicia mostrando una lista de posts desde https://jsonplaceholder.typicode.com/posts.
+
+    Puedes usar el formulario superior para añadir un post (título + cuerpo).
+
+    El nuevo post se añade al final de la lista.
+
+    Al hacer click sobre cualquier post, navegas a su detalle.
+
+    Los posts reales se consultan por ID. Los nuevos se leen desde memoria.
+
+⚠️ Consideraciones importantes
+
+    La API utilizada no guarda los nuevos posts. El POST devuelve un objeto simulado con id = 101,
+    etc., pero no es recuperable por GET. Por eso, la app implementa una lógica para mostrar estos
+    elementos desde memoria.
+
+    Es necesario otorgar el permiso de red:
+    <uses-permission android:name="android.permission.INTERNET" />
+
+
+✅ Requisitos mínimos
+
+    Android Studio Flamingo o superior
+
+    JDK 17
+
+    SDK mínimo: 24
+
+    Conexión a Internet para llamadas a la API
+
+
+📚 Recursos
+
+    API: https://jsonplaceholder.typicode.com
+
+    Documentación Hilt: https://developer.android.com/training/dependency-injection/hilt-android
+
+    Documentación Retrofit: https://square.github.io/retrofit
+
+    Jetpack Compose: https://developer.android.com/jetpack/compose
